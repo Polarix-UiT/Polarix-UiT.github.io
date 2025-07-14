@@ -1,12 +1,12 @@
 // Shared components for Space Society website
-
+//                    <div><a href="mailto:someEmail@weDontHaveADomainYet.no" class="email">someEmail@weDontHaveADomainYet.no</a></div>
 // Social bar HTML content
 const socialBarHTML = `
     <div class="social-bar">
         <div class="container">
             <div class="social-bar-content">
                 <div class="contact-info">
-                    <div><a href="mailto:someEmail@weDontHaveADomainYet.no" class="email">someEmail@weDontHaveADomainYet.no</a></div>
+
                     <div>Polarix UIT</div>
                     <div>Lodve Langesgate 2</div>
                     <div>8514 Narvik</div>
