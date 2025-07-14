@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatory Network - Space Society</title>
+    <link rel="stylesheet" href="css/shared-styles.css">
+    <style>
+        /* Page-specific styles */
+        .project-hero {
+            background: rgba(20, 20, 40, 0.8);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '🔭';
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .project-hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-card {
+            background: rgba(30, 30, 60, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.2);
+        }
+
+        .content-card h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: rgba(30, 30, 60, 0.4);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #64b5f6;
+            position: relative;
+        }
+
+        .timeline-date {
+            color: #64b5f6;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(30, 30, 60, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #64b5f6;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            color: #b0b0b0;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded by shared components -->
+
+    <main>
+        <div class="container">
+            <section class="project-hero">
+                <h1>🔭 Observatory Network</h1>
+                <p>Building a comprehensive network of student-operated telescopes for astronomical observations, data collection, and collaborative research across multiple universities.</p>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Overview</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>🎯 Mission</h3>
+                            <p>Create an interconnected network of telescopes that allows students to conduct real-time astronomical observations, share data, and collaborate on research projects regardless of their physical location.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>🔬 Research Focus</h3>
+                            <p>Variable star monitoring, exoplanet detection, asteroid tracking, and deep-space imaging. Our network will contribute to citizen science initiatives and professional astronomical databases.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>🤝 Collaboration</h3>
+                            <p>Partnering with universities nationwide to establish remote telescope stations, creating a distributed observatory system accessible to students everywhere.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Current Progress</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">3</span>
+                            <div class="stat-label">Telescopes Online</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">12</span>
+                            <div class="stat-label">Partner Universities</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">247</span>
+                            <div class="stat-label">Observations Made</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">15TB</span>
+                            <div class="stat-label">Data Collected</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">January 2025</div>
+                            <h3>Phase 1: Foundation</h3>
+                            <p>Established first telescope station on campus and developed remote control software. Successfully conducted initial test observations and data collection protocols.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">March 2025</div>
+                            <h3>Phase 2: Network Expansion</h3>
+                            <p>Connected with 5 partner universities and established standardized communication protocols. Began collaborative observation sessions.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">June 2025</div>
+                            <h3>Phase 3: Data Integration</h3>
+                            <p>Launched centralized data repository and analysis platform. Students can now access and analyze data from all network telescopes.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">September 2025</div>
+                            <h3>Phase 4: Research Projects</h3>
+                            <p>Initiated first major collaborative research project: long-term monitoring of variable stars in the Andromeda galaxy.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">December 2025</div>
+                            <h3>Future: Full Network</h3>
+                            <p>Goal to have 20+ telescopes online with advanced AI-assisted observation scheduling and automated data processing.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Technical Specifications</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>🔭 Primary Telescopes</h3>
+                            <p><strong>Type:</strong> 8-inch Schmidt-Cassegrain<br>
+                            <strong>Mount:</strong> Computerized GoTo Equatorial<br>
+                            <strong>Camera:</strong> CMOS with cooling system<br>
+                            <strong>Filters:</strong> LRGB and narrowband</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>💻 Control System</h3>
+                            <p><strong>Software:</strong> Custom Python-based control interface<br>
+                            <strong>Remote Access:</strong> Web-based dashboard<br>
+                            <strong>Automation:</strong> Scheduled observation queue<br>
+                            <strong>Weather:</strong> Automated closure system</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>📊 Data Management</h3>
+                            <p><strong>Storage:</strong> Cloud-based with local backup<br>
+                            <strong>Processing:</strong> Automated calibration pipeline<br>
+                            <strong>Analysis:</strong> Machine learning classification<br>
+                            <strong>Sharing:</strong> Open data portal</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Get Involved</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>🎓 For Students</h3>
+                            <p>Join our weekly observation sessions, learn telescope operation, participate in data analysis projects, and contribute to real astronomical research.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>🏫 For Universities</h3>
+                            <p>Partner with us to establish a telescope station at your campus. We provide technical support, training, and access to the full network.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>💡 For Researchers</h3>
+                            <p>Propose research projects, access our data archive, or collaborate on observation campaigns. Our network is open to academic research.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/shared-components.js"></script>
+    <script>
+        // Initialize shared components for project page
+        initializeSharedComponents('project');
+    </script>
+</body>
+</html>

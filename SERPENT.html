@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatory Network - Space Society</title>
+    <link rel="stylesheet" href="css/shared-styles.css">
+    <style>
+        /* Page-specific styles */
+        .project-hero {
+            background: rgba(20, 20, 40, 0.8);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .project-hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* SERPENT Logo Styles */
+        .hero-logo {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-logo img {
+            filter: drop-shadow(0 0 20px rgba(100, 181, 246, 0.3));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .hero-logo img:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 30px rgba(100, 181, 246, 0.5));
+        }
+
+        /* Mobile logo adjustments */
+        @media (max-width: 768px) {
+            .hero-logo img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* SERPENT Logo Styles */
+        .hero-logo {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-logo img {
+            filter: drop-shadow(0 0 20px rgba(100, 181, 246, 0.3));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .hero-logo img:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 30px rgba(100, 181, 246, 0.5));
+        }
+
+        /* Mobile logo adjustments */
+        @media (max-width: 768px) {
+            .hero-logo img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-card {
+            background: rgba(30, 30, 60, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 181, 246, 0.2);
+        }
+
+        .content-card h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: rgba(30, 30, 60, 0.4);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #64b5f6;
+            position: relative;
+        }
+
+        .timeline-date {
+            color: #64b5f6;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(30, 30, 60, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #64b5f6;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            color: #b0b0b0;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded by shared components -->
+
+    <main>
+        <div class="container">
+            <section class="project-hero">
+                <h1>SERPENT</h1>
+                <div class="hero-logo">
+                    <img src="Images/serpent.png" alt="SERPENT Logo" width="500" height="500">
+                </div>
+
+                <h2>SEPARATION RESEARCH PROJECT NARVIK UIT</h2>
+
+                <p>Serpent is a student-led initiative aimed at designing and building a 2U CubeSat prototype for a suborbital flight. SERPENT laid the groundwork for Polarix organisation and started this adventure.</p>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Overview</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>Mission</h3>
+                            <p>Design and build a 2U CubeSat for a suborbital flight, capable of separating into 2 1U satellites after launch and deployment.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Low level focus</h3>
+                            <p>Our focus is to apply engineering skills taught at UiT The Arctic University of Norway to develop space-grade hardware from the ground up.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Collaboration</h3>
+                            <p>SERPENT was developed in collaboration with Andøya Space and UiT The Arctic University of Norway, which provided guidance, testing facilities, and access to their expertise in satellite technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Mission Objectives</h2>
+                    <div class="stats-grid">
+                        <div class="content-card">
+                            <h3>Detumbling</h3>
+                            <p>Design and build an ADCS (Attitude Determination and Control System) capable of detumbling the CubeSat during a suborbital flight.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Separation</h3>
+                            <p>Design and build a separation mechanism to separate the CubeSat into 2 1U satellites after launch and deployment.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Separation verification</h3>
+                            <p>Design and build a sensor subsystem to verify the successful separation of the CubeSat.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">May 2024</div>
+                            <h3>Intent to Fly</h3>
+                            <p>An Intent to Fly was submitted to Andøya Space to participate in the GHOST mission.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">August 2024</div>
+                            <h3>Project Kick-off</h3>
+                            <p>Project officially commenced with initial team meetings. Students were recruited and divided into teams.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">January 2025</div>
+                            <h3>Critical Design Review</h3>
+                            <p>The design was reviewed and finalized.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">July 2025</div>
+                            <h3>Payload Integration</h3>
+                            <p>The payload was tested and integrated into the rocket at Wallops.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">November 2025</div>
+                            <h3>Launch</h3>
+                            <p>Scheduled launch date from Andøya Space.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Technical Specifications</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>🔭 Primary Telescopes</h3>
+                            <p><strong>Type:</strong> 8-inch Schmidt-Cassegrain<br>
+                            <strong>Mount:</strong> Computerized GoTo Equatorial<br>
+                            <strong>Camera:</strong> CMOS with cooling system<br>
+                            <strong>Filters:</strong> LRGB and narrowband</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>💻 Control System</h3>
+                            <p><strong>Software:</strong> Custom Python-based control interface<br>
+                            <strong>Remote Access:</strong> Web-based dashboard<br>
+                            <strong>Automation:</strong> Scheduled observation queue<br>
+                            <strong>Weather:</strong> Automated closure system</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>📊 Data Management</h3>
+                            <p><strong>Storage:</strong> Cloud-based with local backup<br>
+                            <strong>Processing:</strong> Automated calibration pipeline<br>
+                            <strong>Analysis:</strong> Machine learning classification<br>
+                            <strong>Sharing:</strong> Open data portal</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Get Involved</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>🎓 For Students</h3>
+                            <p>Join our weekly observation sessions, learn telescope operation, participate in data analysis projects, and contribute to real astronomical research.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>🏫 For Universities</h3>
+                            <p>Partner with us to establish a telescope station at your campus. We provide technical support, training, and access to the full network.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>💡 For Researchers</h3>
+                            <p>Propose research projects, access our data archive, or collaborate on observation campaigns. Our network is open to academic research.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/shared-components.js"></script>
+    <script>
+        // Initialize shared components for project page
+        initializeSharedComponents('project');
+    </script>
+</body>
+</html>
