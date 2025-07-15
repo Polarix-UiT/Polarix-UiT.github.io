@@ -47,7 +47,9 @@ const socialBarHTML = `
 const headerHTML = `
     <header>
         <nav class="container">
-            <div class="logo">Polarix UIT</div>
+            <div class="logo">
+                <img src="Images/Logo 3.svg" alt="Polarix UIT" />
+            </div>
             <ul id="nav-links">
                 <!-- Navigation links will be populated based on page -->
             </ul>
