@@ -150,6 +150,288 @@
         .stat-card {
             background: rgba(30, 30, 60, 0.4);
             padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-card h3 {
+            color: #64b5f6;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            background: rgba(25, 25, 50, 0.6);
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 30, 60, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .slide img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Fullscreen Modal Styles */
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .fullscreen-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .fullscreen-content {
+            max-width: 95%;
+            max-height: 95%;
+            position: relative;
+            cursor: default;
+        }
+
+        .fullscreen-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .fullscreen-info {
+            background: rgba(20, 20, 40, 0.95);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .fullscreen-info h3 {
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .fullscreen-info p {
+            color: #b0b0b0;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(100, 181, 246, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-close:hover {
+            background: rgba(100, 181, 246, 0.4);
+            transform: scale(1.1);
+        }
+
+        .fullscreen-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(100, 181, 246, 0.2);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .fullscreen-nav:hover {
+            background: rgba(100, 181, 246, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .fullscreen-prev {
+            left: 20px;
+        }
+
+        .fullscreen-next {
+            right: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .expand-hint {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(100, 181, 246, 0.8);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .slide:hover .expand-hint {
+            opacity: 1;
+        }
+
+        .slide-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .slide-content h3 {
+            color: #64b5f6;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+        }
+
+        .slide-content p {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(100, 181, 246, 0.2);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-nav:hover {
+            background: rgba(100, 181, 246, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slide-prev {
+            left: 1rem;
+        }
+
+        .slide-next {
+            right: 1rem;
+        }
+
+        .slide-indicators {
+            text-align: center;
+            padding: 1rem 0;
+            background: rgba(30, 30, 60, 0.6);
+        }
+
+        .indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #64b5f6;
+            box-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .slideshow-container {
+                padding: 2rem 0;
+                margin: 0 1rem 2rem 1rem;
+            }
+
+            .slide img {
+                height: 250px;
+            }
+
+            .slide-content {
+                padding: 1.5rem;
+            }
+
+            .slide-nav {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        .stat-card {
+            background: rgba(30, 30, 60, 0.4);
+            padding: 2rem;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
@@ -197,6 +479,40 @@
 
                 <p>Serpent is a student-led initiative aimed at designing and building a 2U CubeSat prototype for a suborbital flight. SERPENT laid the groundwork for Polarix organisation and started this adventure.</p>
             </section>
+
+            <!-- Slideshow Section -->
+            <section class="slideshow-container">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 2rem; color: #64b5f6; text-shadow: 0 0 15px rgba(100, 181, 246, 0.3);">Project Gallery</h2>
+                    
+                    <div class="slideshow-wrapper" id="slideshowWrapper">
+                        <!-- Slides will be generated dynamically by JavaScript -->
+
+                        <!-- Navigation arrows -->
+                        <button class="slide-nav slide-prev" onclick="changeSlide(-1)">‹</button>
+                        <button class="slide-nav slide-next" onclick="changeSlide(1)">›</button>
+                        
+                        <!-- Slide indicators will be generated dynamically by JavaScript -->
+                        <div class="slide-indicators" id="slideIndicators">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fullscreen Modal -->
+            <div class="fullscreen-modal" id="fullscreenModal" onclick="closeFullscreen()">
+                <button class="fullscreen-close" onclick="closeFullscreen()">×</button>
+                <button class="fullscreen-nav fullscreen-prev" onclick="fullscreenChangeSlide(-1); event.stopPropagation();">‹</button>
+                <button class="fullscreen-nav fullscreen-next" onclick="fullscreenChangeSlide(1); event.stopPropagation();">›</button>
+                
+                <div class="fullscreen-content" onclick="event.stopPropagation()">
+                    <img id="fullscreenImg" src="" alt="">
+                    <div class="fullscreen-info">
+                        <h3 id="fullscreenTitle"></h3>
+                        <p id="fullscreenDescription"></p>
+                    </div>
+                </div>
+            </div>
 
             <section class="content-section">
                 <div class="container">
@@ -280,6 +596,165 @@
     <script>
         // Initialize shared components for project page
         initializeSharedComponents('project');
+
+        // Slideshow functionality
+        let currentSlideIndex = 0;
+        let fullscreenSlideIndex = 0;
+        let slides, indicators;
+        
+        // SINGLE SOURCE OF TRUTH - Update slides here only!
+        const slideData = [
+            {
+                src: 'Images/IMG_1082.jpg',
+                alt: 'SERPENT Project Image 1',
+                title: 'ADCS testing',
+                description: 'Our Attitude Determination and Control Subsystem (ADCS) undergoing testing.'
+            },
+            {
+                src: 'Images/IMG_1143.jpg',
+                alt: 'SERPENT Project Image 2',
+                title: 'Assembled satellite',
+                description: 'Fully assembled CubeSat on display. Due to the short suborbital flight duration, solar panels are not necessary. This gave our partners some extra space on the chassis!'
+            }
+        ];
+
+        // Generate slides dynamically from slideData
+        function initializeSlideshow() {
+            const slideshowWrapper = document.getElementById('slideshowWrapper');
+            const slideIndicators = document.getElementById('slideIndicators');
+            
+            // Clear existing content
+            const existingSlides = slideshowWrapper.querySelectorAll('.slide');
+            existingSlides.forEach(slide => slide.remove());
+            slideIndicators.innerHTML = '';
+            
+            // Generate slides
+            slideData.forEach((slide, index) => {   
+                // Create slide element
+                const slideElement = document.createElement('div');
+                slideElement.className = index === 0 ? 'slide active' : 'slide';
+                slideElement.innerHTML = `
+                    <div class="expand-hint">Click to expand</div>
+                    <img src="${slide.src}" alt="${slide.alt}" onclick="openFullscreen(${index})">
+                    <div class="slide-content">
+                        <h3>${slide.title}</h3>
+                        <p>${slide.description}</p>
+                    </div>
+                `;
+                
+                // Insert before navigation arrows
+                const firstNav = slideshowWrapper.querySelector('.slide-nav');
+                slideshowWrapper.insertBefore(slideElement, firstNav);
+                
+                // Create indicator
+                const indicator = document.createElement('span');
+                indicator.className = index === 0 ? 'indicator active' : 'indicator';
+                indicator.onclick = () => currentSlide(index + 1);
+                slideIndicators.appendChild(indicator);
+            });
+            
+            // Update references
+            slides = document.querySelectorAll('.slide');
+            indicators = document.querySelectorAll('.indicator');
+        }
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Show current slide
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // Fullscreen functionality
+        function openFullscreen(slideIndex) {
+            fullscreenSlideIndex = slideIndex;
+            updateFullscreenContent();
+            document.getElementById('fullscreenModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenModal').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        function updateFullscreenContent() {
+            const data = slideData[fullscreenSlideIndex];
+            document.getElementById('fullscreenImg').src = data.src;
+            document.getElementById('fullscreenImg').alt = data.alt;
+            document.getElementById('fullscreenTitle').textContent = data.title;
+            document.getElementById('fullscreenDescription').textContent = data.description;
+        }
+
+        function fullscreenChangeSlide(direction) {
+            fullscreenSlideIndex += direction;
+            
+            if (fullscreenSlideIndex >= slideData.length) {
+                fullscreenSlideIndex = 0;
+            } else if (fullscreenSlideIndex < 0) {
+                fullscreenSlideIndex = slideData.length - 1;
+            }
+            
+            updateFullscreenContent();
+        }
+
+        // Auto-advance slideshow every 5 seconds (pause when fullscreen is open)
+        let autoAdvanceInterval;
+        
+        function startAutoAdvance() {
+            autoAdvanceInterval = setInterval(() => {
+                if (!document.getElementById('fullscreenModal').classList.contains('active')) {
+                    changeSlide(1);
+                }
+            }, 5000);
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSlideshow();
+            startAutoAdvance();
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('fullscreenModal').classList.contains('active')) {
+                // Fullscreen navigation
+                if (e.key === 'ArrowLeft') {
+                    fullscreenChangeSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    fullscreenChangeSlide(1);
+                } else if (e.key === 'Escape') {
+                    closeFullscreen();
+                }
+            } else {
+                // Regular slideshow navigation
+                if (e.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            }
+        });
     </script>
 </body>
 </html>
