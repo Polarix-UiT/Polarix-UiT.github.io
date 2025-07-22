@@ -239,9 +239,13 @@
         .sponsor-logo {
             max-width: 250px;
             max-height: 150px;
+            width: 250px;
+            height: 150px;
             margin-bottom: 1rem;
             filter: brightness(0.8) contrast(1.2);
             transition: filter 0.3s ease;
+            object-fit: contain;
+            object-position: center;
         }
 
         .sponsor-item:hover .sponsor-logo {
@@ -339,8 +343,12 @@
             }
 
             .sponsor-logo {
-                max-width: 250px;
-                max-height: 150px;
+                max-width: 200px;
+                max-height: 120px;
+                width: 200px;
+                height: 120px;
+                object-fit: contain;
+                object-position: center;
             }
         }
     </style>
