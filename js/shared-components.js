@@ -6,7 +6,7 @@ const socialBarHTML = `
         <div class="container">
             <div class="social-bar-content">
                 <div class="contact-info">
-
+                    <div><a href="mailto:contact@polarixuit.no" class="email">contact@polarixuit.no</a></div>
                     <div>Polarix UIT</div>
                     <div>Lodve Langesgate 2</div>
                     <div>8514 Narvik</div>
