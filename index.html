@@ -30,7 +30,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            padding: 0;
+            padding: 2rem 1rem;
             text-align: center;
             margin-bottom: 0;
             border-radius: 0;
@@ -43,13 +43,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-sizing: border-box;
         }
 
         .hero-logo {
             max-width: 400px;
+            width: 100%;
             height: auto;
             filter: brightness(1.1);
-            margin-bottom: 5rem;
+            margin-bottom: 2rem;
         }
 
         .hero::before {
@@ -80,7 +82,6 @@
             max-width: 90%;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 10rem;
         }
 
         .btn {
@@ -348,25 +349,20 @@
             .hero {
                 min-height: 100vh;
                 min-height: 100dvh;
-                padding: 2rem 0;
-                background-attachment: scroll; /* Fixed backgrounds can cause issues on mobile */
-            }
-
-            .hero .container {
-                margin-top: clamp(1rem, 8vh, 4rem);
-                padding: 0 1rem;
+                padding: 2rem 1rem;
+                background-attachment: scroll;
             }
 
             .hero-logo {
-                max-width: min(280px, 70vw);
-                margin-bottom: clamp(-1rem, -3vw, -2rem);
-                top: clamp(-2vh, -3vw, -5vh);
+                max-width: min(280px, 80vw);
+                margin-bottom: 1.5rem;
             }
 
             .hero p {
                 font-size: clamp(0.9rem, 3.5vw, 1rem);
                 line-height: 1.4;
                 max-width: 95%;
+                margin-bottom: 1rem;
             }
 
             main {
@@ -442,24 +438,29 @@
         /* Breakpoint for very small screens */
         @media (max-width: 480px) {
             .hero-logo {
-                max-width: min(200px, 60vw);
-                top: clamp(-1vh, -2vw, -3vh);
-                margin-bottom: clamp(-0.5rem, -2vw, -1rem);
+                max-width: min(200px, 70vw);
+                margin-bottom: 1rem;
             }
             
             .hero h1 {
                 font-size: clamp(1.2rem, 5vw, 1.8rem);
                 line-height: 1.1;
+                margin-bottom: 0.75rem;
             }
             
             .hero p {
                 font-size: clamp(0.8rem, 3vw, 0.9rem);
                 line-height: 1.3;
+                margin-bottom: 1rem;
             }
             
             .btn {
                 padding: 12px 24px;
                 font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+
+            .hero {
+                padding: 1.5rem 1rem;
             }
         }
     </style>
