@@ -29,6 +29,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             padding: 0;
             text-align: center;
             margin-bottom: 0;
@@ -37,23 +38,18 @@
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            min-height: calc(100vh - 80px);
+            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-        }
-
-        .hero .container {
-            margin-top: calc(25vh - 80px);
         }
 
         .hero-logo {
             max-width: 400px;
             height: auto;
-            margin-bottom: -5rem;
             filter: brightness(1.1);
-            position: relative;
-            top: -10vh;
+            margin-bottom: 5rem;
         }
 
         .hero::before {
@@ -69,16 +65,22 @@
         }
 
         .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 1rem;
+            font-size: clamp(2rem, 8vw, 5rem);
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
             color: #ffffff;
             text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 2rem;
+            font-size: clamp(1rem, 4vw, 2rem);
             color: #ffffff;
-            margin-bottom: 2rem;
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            line-height: 1.4;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10rem;
         }
 
         .btn {
@@ -340,35 +342,39 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 6vw, 2rem);
             }
 
             .hero {
-                min-height: calc(100vh - 140px);
+                min-height: 100vh;
+                min-height: 100dvh;
                 padding: 2rem 0;
+                background-attachment: scroll; /* Fixed backgrounds can cause issues on mobile */
             }
 
             .hero .container {
-                margin-top: calc(15vh - 140px);
+                margin-top: clamp(1rem, 8vh, 4rem);
+                padding: 0 1rem;
             }
 
             .hero-logo {
-                max-width: 280px;
-                margin-bottom: -2rem;
-                top: -5vh;
+                max-width: min(280px, 70vw);
+                margin-bottom: clamp(-1rem, -3vw, -2rem);
+                top: clamp(-2vh, -3vw, -5vh);
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: clamp(0.9rem, 3.5vw, 1rem);
                 line-height: 1.4;
+                max-width: 95%;
             }
 
             main {
-                margin-top: 140px;
+                margin-top: 80px;
             }
 
             .section {
-                padding: 2rem 0;
+                padding: clamp(1.5rem, 4vw, 2rem) 0;
                 min-height: auto;
                 min-height: 80vh;
             }
@@ -385,11 +391,11 @@
 
             .btn {
                 padding: 15px 35px;
-                font-size: 1rem;
+                font-size: clamp(0.9rem, 3vw, 1rem);
             }
 
             .sponsors {
-                padding: 2rem 0;
+                padding: clamp(1.5rem, 4vw, 2rem) 0;
                 min-height: auto;
                 min-height: 80vh;
             }
@@ -404,12 +410,56 @@
             }
 
             .sponsor-logo {
-                max-width: 200px;
+                max-width: min(200px, 60vw);
                 max-height: 120px;
-                width: 200px;
-                height: 120px;
+                width: auto;
+                height: auto;
                 object-fit: contain;
                 object-position: center;
+            }
+        }
+
+        /* Additional breakpoint for very large screens */
+        @media (min-width: 1600px) {
+            .hero .container {
+                max-width: 1200px;
+            }
+            
+            .hero h1 {
+                font-size: clamp(3rem, 5vw, 6rem);
+            }
+            
+            .hero p {
+                font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+                max-width: 80%;
+            }
+            
+            .hero-logo {
+                max-width: min(500px, 25vw);
+            }
+        }
+
+        /* Breakpoint for very small screens */
+        @media (max-width: 480px) {
+            .hero-logo {
+                max-width: min(200px, 60vw);
+                top: clamp(-1vh, -2vw, -3vh);
+                margin-bottom: clamp(-0.5rem, -2vw, -1rem);
+            }
+            
+            .hero h1 {
+                font-size: clamp(1.2rem, 5vw, 1.8rem);
+                line-height: 1.1;
+            }
+            
+            .hero p {
+                font-size: clamp(0.8rem, 3vw, 0.9rem);
+                line-height: 1.3;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
             }
         }
     </style>
@@ -423,7 +473,6 @@
                 <img src="Images/layer1.svg" alt="Polarix UiT Logo" class="hero-logo">
                 <h1>Taking Narvik to the stars</h1>
                 <p>A Narvik based technical student organization dedicated to space exploration, satellite technology, and aerospace innovation</p>
-                <a href="#about" class="btn">About Our Mission</a>
             </div>
         </section>
 
