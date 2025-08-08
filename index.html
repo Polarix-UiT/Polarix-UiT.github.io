@@ -29,7 +29,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 4rem 0;
+            padding: 0;
             text-align: center;
             margin-bottom: 0;
             border-radius: 0;
@@ -39,8 +39,21 @@
             overflow: hidden;
             min-height: calc(100vh - 80px);
             display: flex;
-            align-items: center;
-            padding-top: 30vh;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .hero .container {
+            margin-top: calc(25vh - 80px);
+        }
+
+        .hero-logo {
+            max-width: 400px;
+            height: auto;
+            margin-bottom: -5rem;
+            filter: brightness(1.1);
+            position: relative;
+            top: -10vh;
         }
 
         .hero::before {
@@ -56,15 +69,15 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 5rem;
             margin-bottom: 1rem;
             color: #ffffff;
             text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #b0b0b0;
+            font-size: 2rem;
+            color: #ffffff;
             margin-bottom: 2rem;
         }
 
@@ -335,6 +348,21 @@
                 padding: 2rem 0;
             }
 
+            .hero .container {
+                margin-top: calc(15vh - 140px);
+            }
+
+            .hero-logo {
+                max-width: 280px;
+                margin-bottom: -2rem;
+                top: -5vh;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
             main {
                 margin-top: 140px;
             }
@@ -392,6 +420,7 @@
     <main>
         <section id="home" class="hero">
             <div class="container">
+                <img src="Images/layer1.svg" alt="Polarix UiT Logo" class="hero-logo">
                 <h1>Taking Narvik to the stars</h1>
                 <p>A Narvik based technical student organization dedicated to space exploration, satellite technology, and aerospace innovation</p>
                 <a href="#about" class="btn">About Our Mission</a>
@@ -401,20 +430,20 @@
         <section id="about" class="section">
             <div class="container">
                 <h2>About Polarix UIT</h2>
-                <p>Polarix UIT is a student led organization at UIT The Norwegian Arctic University, dedicated to providing students with hands-on experiance in the world of aerospace engineering.</p>
+                <p>From lecture notes to Low Earth Orbit - Polarix UIT is a student led organization at UIT The Arctic University of Norway, dedicated to providing students with hands-on experience in the world of aerospace engineering.</p>
 
                 <div class="features">
                     <div class="feature">
                         <h3>Student Focused</h3>
-                        <p>The organization is entirely student-led, providing a platform for young engineers to take initiative and lead projects.</p>
+                        <p>The organization is entirely student-led, providing a platform for young engineers to take initiative and lead projects. We believe in empowering students to develop leadership skills while gaining practical experience in aerospace engineering.</p>
                     </div>
                     <div class="feature">
                         <h3>Unique opportunity</h3>
-                        <p>UiT The Arctic University of Norway offers bachelor and master's programs in aerospace engineering, we aim to provide students with practical experience through hands-on projects and collaborations.</p>
+                        <p>UiT The Arctic University of Norway offers bachelor’s and master’s programs in satellite and aerospace engineering. We aim to enrich students’ academic journeys through hands-on projects, real-world collaborations, and innovative challenges that prepare them for the space industry.</p>
                     </div>
                     <div class="feature">
-                        <h3>Rich history</h3>
-                        <p>UIT Narvik has more than 20 years of experiance with space technology and research. We aim to build on this legacy by engaging students in innovative projects and collaborations.</p>
+                        <h3>Guided by Expertise</h3>
+                        <p>With over 20 years of experience in space technology and research at UiT Narvik, our organization is guided by a strong legacy of expertise. We are committed to building on this foundation by involving students in relevant projects and encouraging a culture of innovation.</p>
                     </div>
                 </div>
             </div>
