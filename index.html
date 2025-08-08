@@ -38,8 +38,8 @@
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            min-height: 90vh;
-            min-height: 90dvh;
+            min-height: clamp(400px, 90vh, 100vh);
+            min-height: clamp(400px, 90dvh, 100dvh);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -47,7 +47,7 @@
         }
 
         .hero-logo {
-            max-width: clamp(5rem, 30vw, 30rem);
+            max-width: clamp(8rem, 25vw, 25rem);
             width: 90%;
             height: auto;
             filter: brightness(1.1);
@@ -349,13 +349,8 @@
             .hero {
                 min-height: 100vh;
                 min-height: 100dvh;
-                padding: 2rem 1rem;
+                padding: clamp(1rem, 4vh, 2rem) 1rem;
                 background-attachment: scroll;
-            }
-
-            .hero-logo {
-                max-width: min(280px, 80vw);
-                margin-bottom: 1.5rem;
             }
 
             .hero p {
@@ -429,10 +424,6 @@
                 font-size: clamp(1.2rem, 2.5vw, 2.5rem);
                 max-width: 80%;
             }
-            
-            .hero-logo {
-                max-width: min(500px, 25vw);
-            }
         }
 
         /* Breakpoint for very small screens */
@@ -442,11 +433,6 @@
                 align-items: flex-start;
                 justify-content: flex-start;
                 padding-top: clamp(2rem, 8vh, 4rem);
-            }
-            
-            .hero-logo {
-                max-width: min(200px, 70vw);
-                margin-bottom: clamp(0.5rem, 2vh, 1rem);
             }
             
             .hero h1 {
@@ -464,6 +450,25 @@
             .btn {
                 padding: 12px 24px;
                 font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+        }
+
+        /* Handle windowed/non-fullscreen layouts */
+        @media (max-width: 1200px) and (max-height: 800px) {
+            .hero {
+                min-height: 80vh;
+                min-height: 80dvh;
+                padding: clamp(1rem, 3vh, 2rem) 1rem;
+            }
+            
+            .section {
+                min-height: 80vh;
+                padding: clamp(2rem, 5vh, 3rem) 0;
+            }
+            
+            .sponsors {
+                min-height: 80vh;
+                padding: clamp(2rem, 5vh, 3rem) 0;
             }
         }
 
