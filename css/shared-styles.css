@@ -1,4 +1,4 @@
-/* Shared styles for Space Society website */
+/* Shared styles for Polarix UiT website */
 
 /* Base styles */
 * {
@@ -10,7 +10,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #e0e0e0;
+    color: #E3DEE3;
     background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
     min-height: 100vh;
     padding-bottom: 120px;
@@ -37,6 +37,10 @@ header {
     z-index: 1000;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.4s ease;
 }
 
 nav {
@@ -72,7 +76,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #64b5f6;
+    color: #33BFF2;
     text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
 }
 
@@ -95,6 +99,17 @@ main {
     padding: 2rem 0;
 }
 
+#about p strong {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+p {
+  font-size: 1rem;   /* 16px */
+  line-height: 1.6;  /* improves readability */
+}
+
 /* Content sections */
 .content-section {
     background: rgba(25, 25, 50, 0.6);
@@ -106,10 +121,11 @@ main {
 }
 
 .content-section h2 {
-    color: #64b5f6;
+    color: #E3DEE3;
     margin-bottom: 2rem;
     text-shadow: 0 0 15px rgba(100, 181, 246, 0.3);
     text-align: center;
+    font-size: 2rem;
 }
 
 /* Social bar styles */
@@ -136,13 +152,13 @@ main {
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 0 rem;
+    gap: 0;
     font-size: 0.85rem;
-    color: #b0b0b0;
+    color: #ffffff;
 }
 
 .contact-info .email {
-    color: #64b5f6;
+    color: #33BFF2;
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -166,7 +182,7 @@ main {
 }
 
 .social-links a {
-    color: #b0b0b0;
+    color: #ffffff;
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 50%;
@@ -181,7 +197,7 @@ main {
 }
 
 .social-links a:hover {
-    color: #64b5f6;
+    color: #33BFF2;
     background: rgba(100, 181, 246, 0.1);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
@@ -268,3 +284,188 @@ main {
         font-size: 0.75rem;
     }
 }
+
+.feature,
+.sponsor-item {
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for feature boxes */
+.feature:hover {
+    background: rgba(40, 40, 80, 0.8); /* slightly lighter bluish tone */
+    box-shadow: 0 0 20px rgba(100, 181, 246, 0.4); /* subtle glow */
+}
+
+/* Hover effect for sponsor boxes */
+.sponsor-item:hover {
+    background: rgba(40, 40, 80, 0.8);
+    box-shadow: 0 0 20px rgba(100, 181, 246, 0.4);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.1rem 0.1rem;   /* smaller inside space */
+    background: #33BFF2;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8rem;       /* smaller text */
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background: #90caf9;
+    box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);
+    transform: translateY(-3px);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    transition: min-height 0.6s ease, padding 0.6s ease;
+}
+
+.hero-logo {
+  transition: max-width 0.6s ease, transform 0.6s ease;
+}
+
+/* On scroll */
+.hero.scrolled {
+  min-height: 60vh;           /* can shrink height if you want */
+  align-items: center;        /* keep horizontally centered */
+  padding-top: 300px;             /* remove extra top padding */
+}
+
+.hero-content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero.scrolled .hero-logo {
+  max-width: 200px;           /* smaller, but still centered */
+  transform: translateY(0); /* stays in place below header */
+  margin-bottom: 2.5rem;        /* optional spacing */
+}
+
+.hero.scrolled .hero-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Section sizing: content-sized + adjustable padding ---------- */
+/* Put this at the end of css/shared-styles.css so it overrides earlier rules */
+
+:root {
+  --section-vertical-padding: 3rem;       /* default desktop padding (top & bottom) */
+  --section-vertical-padding-mobile: 1.5rem;  /* default mobile padding (top & bottom) */
+}
+
+.section,
+.sponsors,
+.content-section {
+  padding: var(--section-vertical-padding) 0;
+  min-height: auto;
+  display: block !important;
+  align-items: normal !important;
+}
+
+.section--centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-vertical-padding) 0;
+  min-height: auto;
+}
+
+#about, #projects, #sponsors, #contact {
+  padding: var(--section-vertical-padding) 0;
+}
+
+#about.section--tight,
+#about.section-tight {
+  padding: calc(var(--section-vertical-padding) * 0.6);
+}
+
+@media (max-width: 768px) {
+  .section,
+  .sponsors,
+  .content-section {
+    padding: var(--section-vertical-padding-mobile) 0;
+  }
+  .section--centered {
+    padding: calc(var(--section-vertical-padding-mobile) * 1.1) 0;
+  }
+}
+
+footer {
+  min-height: auto !important;
+  padding: 2rem 0;
+}
+
+/* ---------- Remove leftover large bottom spacing (place at end of shared-styles.css) ---------- */
+
+:root {
+  --section-vertical-padding: 5rem;
+}
+
+/* Force sections to size to content and limit bottom padding/margins */
+.section,
+.sponsors,
+.content-section,
+.slideshow-container,
+.project-hero {
+  min-height: auto !important;
+  padding-top: var(--section-vertical-padding);
+  padding-bottom: var(--section-vertical-padding);
+  margin-bottom: 0 !important; /* remove large gap between sections */
+  display: block !important;
+  align-items: normal !important;
+}
+
+/* Some page rules use margin-bottom on inner containers — zero them where appropriate */
+.section > .container,
+.sponsors > .container,
+.content-section > .container,
+.slideshow-container > .container {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Remove bottom margin on the last child inside containers so card grids don't leave a gap */
+.section > .container > :last-child,
+.content-section > .container > :last-child,
+.sponsors > .container > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Reduce slideshow-specific large bottom gap */
+.slideshow-container {
+  margin-bottom: 1rem !important;
+  padding-bottom: var(--section-vertical-padding);
+}
+
+/* Footer safety: prevent accidental full-viewport footer */
+footer {
+  min-height: auto !important;
+  padding: 2rem 0 !important;
+}
+
+/* Responsive: smaller padding on mobile */
+@media (max-width: 768px) {
+  :root { --section-vertical-padding: 1rem; }
+  .section,
+  .sponsors,
+  .content-section,
+  .slideshow-container {
+    padding-bottom: var(--section-vertical-padding);
+  }
+}
+
