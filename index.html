@@ -24,24 +24,20 @@
     }
 
         .hero {
-            background: linear-gradient(rgba(20, 20, 40, 0.4), rgba(20, 20, 40, 0.4)), url('Images/BackgroundNasa.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            padding: clamp(1rem, 4vh, 3rem) 1rem;
+            position: relative;  /* needed for video + overlay stacking */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
             text-align: center;
-            padding-top: 150px; /* adjust to your header height */
+            padding: clamp(1rem, 4vh, 3rem) 1rem;
+            padding-top: 150px; /* still keeps header offset */
             margin-bottom: 0;
             border-radius: 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            position: relative;
-            overflow: visible;
             min-height: clamp(400px, 90dvh, 100dvh);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;    /* hide overflow so video doesn’t bleed out */
             box-sizing: border-box;
         }
 
@@ -542,14 +538,33 @@
 
     <main>
         <section id="home" class="hero">
+        <!-- Video background -->
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="Images/BackgroundNasa.jpg" aria-hidden="true">
+                <!-- WebM first for modern browsers (optional order) -->
+                <source src="Images/BackgroundVideo7.webm" type="video/webm">
+                <!-- MP4 fallback -->
+                <source src="Images/BackgroundVideo7.mp4" type="video/mp4">
+                <!-- last fallback text -->
+                Your browser does not support the video tag.
+            </video>
+
+        <!-- Dark overlay -->
+            <div class="hero-overlay"></div>
+
+            <div class="hero-credit">
+                Video ID: ISS072-E-720397-722809-20250305-Night <br>
+                Video courtesy of the Earth Science and Remote Sensing Unit, NASA Johnson Space Center. <a href="https://eol.jsc.nasa.gov/BeyondThePhotography/CrewEarthObservationsVideos/AutomaticallyGenerated/AutomaticallyGeneratedVideos.pl?year=latest" target="_blank" rel="noopener"> Video Page</a>
+            </div>
+
+        <!-- Content -->
             <img class="hero-logo" src="Images/layer1.svg" alt="Polarix UiT Logo">
             <div class="hero-content">
                 <h1>Launching ideas into orbit</h1>
-                <p> A Narvik-based technical student organization dedicated to space exploration,
-                    satellite technology and aerospace innovation</p>
+                <p>A Narvik-based technical student organization dedicated to space exploration, satellite technology and aerospace innovation</p>
                 <a href="https://nettskjema.no/a/536631" target="_blank" rel="noopener noreferrer" class="btn">Join Us</a>
             </div>
         </section>
+
 
         <section id="about" class="section">
             <div class="container">
@@ -582,7 +597,7 @@
                         <p>Designing and building a 2U CubeSat prototype for suborbital flight.</p>
                     </div>
                     <div class="feature">
-                        <h3>RALLAR</h3>
+                        <h3>MUNIN-1</h3>
                         <p>An annual onboarding program for new members focused on first-year students, aimed at giving them the necessary technical and systems-engineering skills.</p>
                     </div>
                 </div>
