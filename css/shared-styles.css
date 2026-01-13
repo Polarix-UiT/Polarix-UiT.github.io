@@ -54,7 +54,7 @@ nav {
     font-weight: bold;
 }
 
-.logo img {
+.logo img:not(.hero-logo) {
     height: 40px;
     width: auto;
     max-width: 200px;
@@ -336,8 +336,13 @@ p {
 
 
 .hero-logo {
+  max-width: 50vw !important;  /* responsive size */
+  width: auto !important;
+  height: auto !important;
+
   transition: max-width 0.6s ease, transform 0.6s ease;
 }
+
 
 /* On scroll */
 .hero.scrolled {
@@ -353,14 +358,19 @@ p {
 }
 
 .hero.scrolled .hero-logo {
-  max-width: 200px;           /* smaller, but still centered */
-  transform: translateY(0); /* stays in place below header */
-  margin-bottom: 2.5rem;        /* optional spacing */
+  max-width: 30vw !important;   /* smaller, proportional */
+  width: auto !important;       /* keep aspect ratio */
+  height: auto !important;
+  transform: translateY(0);
+  margin-bottom: 1rem !important;  /* smaller gap between logo and hero text */
 }
+
+
 
 .hero.scrolled .hero-content {
     opacity: 1;
     transform: translateY(0);
+    margin-top: 0; /* remove any extra top margin if hero text has it */
 }
 
 .hero-credit {
