@@ -243,15 +243,24 @@ p {
 /* Mobile responsive */
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
+        flex-direction: row;           /* keep menu horizontal */
+        justify-content: center;       /* center nav items */
+        overflow-x: auto;              /* allow horizontal scroll if needed */
+        padding: 0 1rem;               /* some horizontal spacing */
+        gap: 1rem;                     /* space between logo and menu */
     }
 
     nav ul {
-        margin-top: 1rem;
+        flex-direction: row;           /* ensure horizontal */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: nowrap;             /* no wrapping */
+        gap: 1.5rem;                   /* space between links */
     }
 
     nav ul li {
-        margin: 0 1rem;
+        margin: 0;                     /* remove extra margins that break layout */
     }
 
     main {

@@ -380,6 +380,29 @@
                 background-attachment: scroll;
             }
 
+            .hero.scrolled .hero-logo {
+                max-width: 50vw;   /* bigger than 30vw */
+                margin-bottom: 0.5rem; 
+                transform: translateY(0);
+            }
+
+            .hero.scrolled .hero-content {
+                margin-top: 0.5rem;    /* small gap below logo */
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .hero.scrolled .hero-content h1 {
+                font-size: clamp(1.5rem, 4vw, 2rem);  /* slightly larger */
+            }
+
+            .hero.scrolled .hero-content p {
+                font-size: clamp(0.9rem, 3vw, 1rem);  /* more readable */
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
             .hero p {
                 font-size: clamp(0.9rem, 3.5vw, 1rem);
                 line-height: 1.4;
@@ -387,8 +410,21 @@
                 margin-bottom: 1rem;
             }
 
+            .hero-credit {
+                font-size: 0.6rem;      /* smaller on mobile */
+                max-width: 45vw;        /* don’t stretch across */
+                right: 10px;
+                bottom: 5px;
+                text-align: right;
+                white-space: normal;    /* allow wrapping */
+            }
+
             main {
                 margin-top: 80px;
+            }
+
+             body {
+                padding-bottom: 60px; /* enough for the smaller footer + social bar */
             }
 
             .section {
@@ -435,6 +471,39 @@
                 object-fit: contain;
                 object-position: center;
             }
+
+            footer {
+                min-height: auto !important;
+                padding: 1rem 0;       /* smaller padding */
+                font-size: 0.75rem;    /* smaller text if needed */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-bar {
+                padding: 0.5rem 0;     /* smaller vertical padding */
+                bottom: 0;
+            }
+
+            .social-bar-content {
+                flex-direction: column;
+                gap: 0.5rem;           /* smaller gap between elements */
+                text-align: center;
+            }
+
+            .social-links a {
+                width: 35px;
+                height: 35px;           /* smaller icons */
+            }
+
+            .contact-info {
+                font-size: 0.7rem;      /* smaller text */
+            }
+
+            .copyright {
+                font-size: 0.6rem;
+            }
         }
 
         /* Additional breakpoint for very large screens */
@@ -456,12 +525,24 @@
         /* Breakpoint for very small screens */
         @media (max-width: 480px) {
             .hero {
-                padding: clamp(0.5rem, 2vh, 1.5rem) 1rem;
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding-top: clamp(2rem, 8vh, 4rem);
+                align-items: center;       /* center logo horizontally */
+                justify-content: center;   /* center vertically within padding */
+                padding-top: clamp(2rem, 8vh, 3rem);
+                text-align: center;        /* center text below logo */
             }
             
+            .hero-logo {
+                max-width: 60vw;           /* bigger on small screens */
+                width: auto;
+                height: auto;
+                margin-bottom: 1rem;
+                flex-shrink: 0;
+            }
+
+            .hero .hero-content {
+                margin-top: 0.5rem;        /* small gap below logo */
+            }
+
             .hero h1 {
                 font-size: clamp(1.2rem, 5vw, 1.8rem);
                 line-height: 1.1;
