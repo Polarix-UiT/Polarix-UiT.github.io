@@ -36,7 +36,7 @@ const socialBarHTML = `
                 </div>
 
                 <div class="copyright">
-                    © 2025 Polarix UIT
+                    © <span id="current-year"></span> Polarix UiT
                 </div>
             </div>
         </div>
@@ -45,24 +45,58 @@ const socialBarHTML = `
 
 // Header HTML content (for consistency across pages)
 const headerHTML = `
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <img src="Images/Logo 3.svg" alt="Polarix UIT" />
-            </div>
-            <ul id="nav-links">
-                <!-- Navigation links will be populated based on page -->
-            </ul>
-        </nav>
-    </header>
+<header>
+  <nav class="container">
+    <div class="logo">
+      <img src="Images/Logo 3.svg" alt="Polarix UIT" />
+    </div>
+
+    <!-- Desktop nav -->
+    <ul id="nav-links" class="desktop-nav">
+      <!-- Links populated by setupNavigation -->
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button id="menu-button" class="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <!-- Mobile nav -->
+    <ul id="mobile-nav" class="mobile-nav">
+      <!-- Links populated by setupNavigation -->
+    </ul>
+  </nav>
+</header>
 `;
 
 
+// Function to load mobile header
+function setupMobileMenu() {
+    const menuButton = document.getElementById('menu-button');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (!menuButton || !mobileNav) return;
+
+    menuButton.addEventListener('click', () => {
+        // Toggle the "active" class to show/hide mobile nav
+        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileNav.classList.toggle('active');
+    });
+}
 
 // Function to load social bar
 function loadSocialBar() {
     document.body.insertAdjacentHTML('beforeend', socialBarHTML);
 }
+
+function updateCurrentYear() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
 
 // Function to load header
 function loadHeader() {
@@ -77,39 +111,41 @@ function loadHeader() {
 
 // Function to set up navigation based on current page
 function setupNavigation(currentPage = 'home') {
-    const navLinks = document.getElementById('nav-links');
-    
-    if (currentPage === 'home') {
-        navLinks.innerHTML = `
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#sponsors">Sponsors</a></li>
-            <li><a href="#contact">Contact</a></li>
-        `;
-    } else {
-        navLinks.innerHTML = `
-            <li><a href="index.html" class="back-link">← Back to Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
-            <li><a href="index.html#sponsors">Sponsors</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        `;
-    }
+    const links = `
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
+        <li><a href="#contact">Contact</a></li>
+    `;
+
+    // Populate desktop nav
+    const desktopNav = document.getElementById('nav-links');
+    if (desktopNav) desktopNav.innerHTML = links;
+
+    // Populate mobile nav
+    const mobileNav = document.getElementById('mobile-nav');
+    if (mobileNav) mobileNav.innerHTML = links;
 }
+
+
 
 // Function to initialize shared components
 function initializeSharedComponents(currentPage = 'home') {
-    // Load components when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
-            loadHeader();
-            setupNavigation(currentPage);
-            loadSocialBar();
+            loadHeader();         // Insert header
+            setupNavigation(currentPage); // Populate links
+            setupMobileMenu();    // Attach mobile toggle
+            loadSocialBar();      // Insert footer/social bar
+            updateCurrentYear();
         });
     } else {
         loadHeader();
         setupNavigation(currentPage);
+        setupMobileMenu();
         loadSocialBar();
+        updateCurrentYear();
     }
 }
+

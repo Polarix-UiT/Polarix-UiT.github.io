@@ -128,6 +128,37 @@
             box-shadow: 0 8px 18px rgba(87, 179, 127, 0.12);
         }
 
+        /* Desktop nav: always visible on desktop */
+            .desktop-nav {
+                display: flex;
+                gap: 1.5rem;
+            }
+
+        /* Hamburger: hidden on desktop */
+            .menu-button {
+                display: none;
+                font-size: 2rem;
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: #ffffff;
+                position: absolute;
+                right: 1rem;
+            }
+
+       /* Mobile nav: hidden by default */
+            .mobile-nav {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
+        }
+
         .section {
             background: rgba(25, 25, 50, 0.6);
             margin-bottom: 0;
@@ -369,19 +400,95 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: clamp(1.5rem, 6vw, 2rem);
+            header {
+                display: flex;
+                flex-wrap: wrap;          /* wrap items if needed */
+                justify-content: space-between; /* distribute space */
+                align-items: center;
+                width: 100%;
+                padding: 2rem 2rem;
+                box-sizing: border-box;
+                overflow: hidden;         /* prevent horizontal scroll */
+            }
+
+              .desktop-nav {
+                display: none;
+            }
+  
+            .menu-button {
+                display: block;
+            }
+
+            header .logo {
+                flex: 1 1 100%;           /* full row for the logo */
+                display: flex;
+                justify-content: center;   /* center horizontally */
+                max-width: 50vw;           /* logo scales with screen */
+                height: auto;
+            }
+
+             header .menu-button {
+                flex-shrink: 0;           /* don’t let hamburger icon shrink too much */
             }
 
             .hero {
-                min-height: 100vh;
-                min-height: 100dvh;
-                padding: clamp(1rem, 4vh, 2rem) 1rem;
+                align-items: center;        /* center logo horizontally */
+                justify-content: center;    /* center vertically within padding */
+                flex-direction: column;
+                text-align: center;         /* center text below logo */
+                padding-top: clamp(2rem, 8vh, 3rem);
+                padding-left: 1rem;
+                padding-right: 1rem;
+                min-height: 100dvh;         /* full mobile viewport height */
                 background-attachment: scroll;
             }
 
+            .hero h1 {
+                font-size: clamp(1.2rem, 5vw, 2rem); /* responsive heading */
+                line-height: 1.2;
+                margin-bottom: clamp(0.5rem, 2vh, 1rem);
+            }
+
+            .hero p {
+                font-size: clamp(0.8rem, 3.5vw, 1rem); /* responsive paragraph */
+                line-height: 1.3;
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: clamp(0.5rem, 2vh, 1rem);
+            }
+
+            .hero-credit {
+                font-size: 0.25rem;      /* smaller on mobile */
+                max-width: 45vw;        /* don’t stretch across */
+                right: 10px;
+                bottom: 5px;
+                text-align: right;
+                white-space: normal;    /* allow wrapping */
+            }
+
+            .hero .btn {
+                padding: 12px 24px;
+                font-size: clamp(0.8rem, 3vw, 1rem);
+            }
+
+            .hero-logo {
+                max-width: 90vw !important;
+                min-width: 180px !important;
+                height: auto !important;
+                margin-bottom: 1rem;
+                flex-shrink: 0;             /* prevent shrinking too much */
+                transition: max-width 0.4s ease, margin 0.4s ease;
+            }
+
+            .hero .hero-content {
+                margin-top: 0.5rem;        /* small gap below logo */
+            }
+
             .hero.scrolled .hero-logo {
-                max-width: 50vw;   /* bigger than 30vw */
+                max-width: 60vw !important;
+                width: auto !important;
+                height: auto !important; 
                 margin-bottom: 0.5rem; 
                 transform: translateY(0);
             }
@@ -403,28 +510,12 @@
                 margin-right: auto;
             }
 
-            .hero p {
-                font-size: clamp(0.9rem, 3.5vw, 1rem);
-                line-height: 1.4;
-                max-width: 95%;
-                margin-bottom: 1rem;
-            }
-
-            .hero-credit {
-                font-size: 0.6rem;      /* smaller on mobile */
-                max-width: 45vw;        /* don’t stretch across */
-                right: 10px;
-                bottom: 5px;
-                text-align: right;
-                white-space: normal;    /* allow wrapping */
-            }
-
             main {
                 margin-top: 80px;
             }
 
              body {
-                padding-bottom: 60px; /* enough for the smaller footer + social bar */
+                padding-bottom: 120px; /* enough for the smaller footer + social bar */
             }
 
             .section {
@@ -487,9 +578,16 @@
             }
 
             .social-bar-content {
-                flex-direction: column;
-                gap: 0.5rem;           /* smaller gap between elements */
-                text-align: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+                align-items: center;
+                text-align: left;
+            }
+
+            .social-links {
+                justify-content: flex-end;
+                gap: 0.5rem;
             }
 
             .social-links a {
@@ -497,14 +595,34 @@
                 height: 35px;           /* smaller icons */
             }
 
+            #contact {
+                padding-bottom: 3rem;
+            }
+
             .contact-info {
-                font-size: 0.7rem;      /* smaller text */
+                font-size: 0.75rem;
+                line-height: 1.3;
             }
 
             .copyright {
-                font-size: 0.6rem;
+                grid-column: 1 / -1; /* spans full width */
+                text-align: center;
+                font-size: 0.7rem;
+                margin-top: 0.25rem;
             }
         }
+
+        /* Show desktop nav on desktop */
+        @media (min-width: 769px) {
+            .desktop-nav {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .menu-button {
+                display: none;
+            }
+        }       
 
         /* Additional breakpoint for very large screens */
         @media (min-width: 1600px) {
@@ -519,45 +637,6 @@
             .hero p {
                 font-size: clamp(1.2rem, 2.5vw, 2.5rem);
                 max-width: 80%;
-            }
-        }
-
-        /* Breakpoint for very small screens */
-        @media (max-width: 480px) {
-            .hero {
-                align-items: center;       /* center logo horizontally */
-                justify-content: center;   /* center vertically within padding */
-                padding-top: clamp(2rem, 8vh, 3rem);
-                text-align: center;        /* center text below logo */
-            }
-            
-            .hero-logo {
-                max-width: 60vw;           /* bigger on small screens */
-                width: auto;
-                height: auto;
-                margin-bottom: 1rem;
-                flex-shrink: 0;
-            }
-
-            .hero .hero-content {
-                margin-top: 0.5rem;        /* small gap below logo */
-            }
-
-            .hero h1 {
-                font-size: clamp(1.2rem, 5vw, 1.8rem);
-                line-height: 1.1;
-                margin-bottom: clamp(0.5rem, 2vh, 0.75rem);
-            }
-            
-            .hero p {
-                font-size: clamp(0.8rem, 3vw, 0.9rem);
-                line-height: 1.3;
-                margin-bottom: clamp(0.5rem, 2vh, 1rem);
-            }
-            
-            .btn {
-                padding: 12px 24px;
-                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
             }
         }
 
@@ -764,7 +843,7 @@
     </main>
 
 
-    <!-- Social bar will be loaded by shared components -->
+    <!-- Social bar, header and nav bar will be loaded by shared components -->
     
     <script src="js/shared-components.js"></script>
     <script>
