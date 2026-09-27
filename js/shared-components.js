@@ -111,12 +111,15 @@ function loadHeader() {
 
 // Function to set up navigation based on current page
 function setupNavigation(currentPage = 'home') {
+    // When on a non-home page, nav should link back to index.html sections
+    const linkTo = (anchor) => currentPage === 'home' ? `#${anchor}` : `index.html#${anchor}`;
+
     const links = `
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#sponsors">Sponsors</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="${linkTo('home')}">Home</a></li>
+        <li><a href="${linkTo('about')}">About</a></li>
+        <li><a href="${linkTo('projects')}">Projects</a></li>
+        <li><a href="${linkTo('sponsors')}">Sponsors</a></li>
+        <li><a href="${linkTo('contact')}">Contact</a></li>
     `;
 
     // Populate desktop nav

@@ -84,6 +84,34 @@ nav ul li a:hover {
     text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
 }
 
+/* Nav visibility: ensure only one nav (desktop or mobile) is visible */
+.desktop-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu-button {
+  display: none; /* hidden on desktop by default */
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  position: absolute;
+  right: 1rem;
+}
+
+.mobile-nav {
+  display: none; /* hidden by default; shown when active */
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mobile-nav.active {
+  display: flex;
+}
+
 .back-link {
     background: rgba(100, 181, 246, 0.1);
     padding: 0.5rem 1rem;
@@ -264,6 +292,15 @@ p {
 
     nav ul li {
         margin: 0;                     /* remove extra margins that break layout */
+    }
+
+    /* On small screens show mobile menu button and hide desktop nav */
+    .desktop-nav {
+      display: none;
+    }
+
+    .menu-button {
+      display: block;
     }
 
     main {
