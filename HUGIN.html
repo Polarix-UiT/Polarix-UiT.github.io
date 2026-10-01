@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUGIN</title>
+    <link rel="stylesheet" href="css/shared-styles.css">
+    <style>
+        .project-hero {
+            background: rgba(20, 20, 40, 0.8);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .project-hero p {
+            font-size: 1.3rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-logo img {
+            width: 260px;
+            height: 260px;
+            filter: drop-shadow(0 0 18px rgba(125, 211, 252, 0.35));
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-card {
+            background: rgba(74, 74, 147, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(125, 211, 252, 0.2);
+        }
+
+        .content-card h3 {
+            color: #64b5f6;
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: rgba(74, 74, 147, 0.4);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #64b5f6;
+            position: relative;
+        }
+
+        .timeline-date {
+            color: #64b5f6;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .slideshow-container {
+            background: rgba(25, 25, 50, 0.6);
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 30, 60, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            display: block;
+        }
+
+        .slide-content {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .slide-nav, .fullscreen-nav, .fullscreen-close {
+            position: absolute;
+            z-index: 5;
+            border: none;
+            color: white;
+            background: rgba(15, 15, 35, 0.75);
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .slide-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+        .slide-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+
+        .slide-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0 0 1.2rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background: #64b5f6;
+        }
+
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .fullscreen-modal.active {
+            display: block;
+        }
+
+        .fullscreen-content {
+            position: absolute;
+            inset: 50% auto auto 50%;
+            transform: translate(-50%, -50%);
+            width: min(90vw, 1000px);
+            background: rgba(20, 20, 40, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .fullscreen-content img {
+            display: block;
+            width: 100%;
+            max-height: 70vh;
+            object-fit: cover;
+        }
+
+        .fullscreen-info {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .fullscreen-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+        .fullscreen-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+        .fullscreen-close { right: 1.5rem; top: 1.5rem; }
+
+        @media (max-width: 768px) {
+            .project-hero h1 { font-size: 2rem; }
+            .hero-logo img { width: 200px; height: 200px; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <section class="project-hero">
+                <h1>HUGIN</h1>
+                <div class="hero-logo">
+                    <img src="Images/Hugin/Polarix_uit_blue.png" alt="Polarix UiT Logo">
+                </div>
+                <h2>ROVER PLATFORM FOR LUNAR ASSISTED EXPLORATION</h2>
+                <p>Hugin is Polarix UiT’s rover-focused project, designed to explore terrain navigation, autonomy, and mission systems in a competitive space robotics context.</p>
+            </section>
+
+            <section class="slideshow-container">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 2rem; color: #ffffff; text-shadow: 0 0 15px rgba(100, 181, 246, 0.3);">Project Gallery</h2>
+                    <div class="slideshow-wrapper" id="slideshowWrapper">
+                        <button class="slide-nav slide-prev" onclick="changeSlide(-1)">‹</button>
+                        <button class="slide-nav slide-next" onclick="changeSlide(1)">›</button>
+                        <div class="slide-indicators" id="slideIndicators"></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="fullscreen-modal" id="fullscreenModal" onclick="closeFullscreen()">
+                <button class="fullscreen-close" onclick="closeFullscreen()">×</button>
+                <button class="fullscreen-nav fullscreen-prev" onclick="fullscreenChangeSlide(-1); event.stopPropagation();">‹</button>
+                <button class="fullscreen-nav fullscreen-next" onclick="fullscreenChangeSlide(1); event.stopPropagation();">›</button>
+                <div class="fullscreen-content" onclick="event.stopPropagation()">
+                    <img id="fullscreenImg" src="" alt="">
+                    <div class="fullscreen-info">
+                        <h3 id="fullscreenTitle"></h3>
+                        <p id="fullscreenDescription"></p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Overview</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>Mission</h3>
+                            <p>Develop a capable rover platform for competition and mission-oriented engineering, with a focus on mobility, sensing, and autonomous operation.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Core focus</h3>
+                            <p>Hugin is built around practical systems engineering: drivetrain design, payload integration, navigation, and robust testing.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Collaboration</h3>
+                            <p>The project gives students hands-on experience in rover design while connecting them with wider space-innovation and engineering communities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Mission Objectives</h2>
+                    <div class="stats-grid">
+                        <div class="content-card">
+                            <h3>Autonomy</h3>
+                            <p>Develop navigation and path-planning strategies that improve the rover’s ability to handle uncertain terrain.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Mobility</h3>
+                            <p>Design a robust drivetrain and suspension layout optimized for rough, uneven surfaces and mission constraints.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Testing</h3>
+                            <p>Validate system performance through iterative prototyping, field trials, and mission simulations.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024</div>
+                            <h3>Concept development</h3>
+                            <p>Requirements and early rover concepts were established around a realistic field-mission scenario.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025</div>
+                            <h3>Prototype iteration</h3>
+                            <p>System design matured through prototype construction and testing in iterative development cycles.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2027</div>
+                            <h3>Competition focus</h3>
+                            <p>Hugin is preparing for the LOOK competition and long-term goals aligned with ERC-style mission development.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/shared-components.js"></script>
+    <script>
+        initializeSharedComponents('project');
+
+        let currentSlideIndex = 0;
+        let fullscreenSlideIndex = 0;
+        let slides, indicators;
+
+        const slideData = [
+            {
+                src: 'Images/Hugin/20260604_170134.jpg',
+                alt: 'Hugin project image 1',
+                title: 'Hugin rover build',
+                description: 'Hugin project imagery from the rover development and testing work.'
+            },
+            {
+                src: 'Images/Hugin/20260604_203818.jpg',
+                alt: 'Hugin project image 2',
+                title: 'Rover assembly',
+                description: 'Progress on the rover platform during the build and integration phase.'
+            },
+            {
+                src: 'Images/Hugin/20260606_103435.jpg',
+                alt: 'Hugin project image 3',
+                title: 'System checks',
+                description: 'Field testing and structural checks carried out throughout development.'
+            },
+            {
+                src: 'Images/Hugin/20260606_130230.jpg',
+                alt: 'Hugin project image 4',
+                title: 'Testing setup',
+                description: 'Hugin testing and validation work in a realistic rover mission environment.'
+            },
+            {
+                src: 'Images/Hugin/2a910b37-9b9c-4397-a48f-6ca881243808.jpg',
+                alt: 'Hugin project image 5',
+                title: 'Design iteration',
+                description: 'Iterative engineering work helping refine the rover design and performance.'
+            },
+            {
+                src: 'Images/Hugin/image.jpg',
+                alt: 'Hugin project image 6',
+                title: 'Mission development',
+                description: 'The rover platform evolves through repeated mission-oriented testing and design review.'
+            },
+            {
+                src: 'Images/Hugin/image2.jpg',
+                alt: 'Hugin project image 7',
+                title: 'Operational context',
+                description: 'Project imagery showing the rover in the context of mission scenarios and testing.'
+            },
+            {
+                src: 'Images/Hugin/IMG_2702.jpg',
+                alt: 'Hugin project image 8',
+                title: 'Final build look',
+                description: 'A snapshot of the completed rover platform in its current configuration.'
+            }
+        ];
+
+        function initializeSlideshow() {
+            const wrapper = document.getElementById('slideshowWrapper');
+            const indicatorsContainer = document.getElementById('slideIndicators');
+            wrapper.querySelectorAll('.slide').forEach(slide => slide.remove());
+            indicatorsContainer.innerHTML = '';
+
+            slideData.forEach((slide, index) => {
+                const slideElement = document.createElement('div');
+                slideElement.className = index === 0 ? 'slide active' : 'slide';
+                slideElement.innerHTML = `
+                    <div class="expand-hint">Click to expand</div>
+                    <img src="${slide.src}" alt="${slide.alt}" onclick="openFullscreen(${index})">
+                    <div class="slide-content">
+                        <h3>${slide.title}</h3>
+                        <p>${slide.description}</p>
+                    </div>
+                `;
+
+                const firstNav = wrapper.querySelector('.slide-nav');
+                wrapper.insertBefore(slideElement, firstNav);
+
+                const indicator = document.createElement('span');
+                indicator.className = index === 0 ? 'indicator active' : 'indicator';
+                indicator.onclick = () => currentSlide(index + 1);
+                indicatorsContainer.appendChild(indicator);
+            });
+
+            slides = document.querySelectorAll('.slide');
+            indicators = document.querySelectorAll('.indicator');
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
+            else if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function openFullscreen(slideIndex) {
+            fullscreenSlideIndex = slideIndex;
+            const data = slideData[fullscreenSlideIndex];
+            document.getElementById('fullscreenImg').src = data.src;
+            document.getElementById('fullscreenImg').alt = data.alt;
+            document.getElementById('fullscreenTitle').textContent = data.title;
+            document.getElementById('fullscreenDescription').textContent = data.description;
+            document.getElementById('fullscreenModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function fullscreenChangeSlide(direction) {
+            fullscreenSlideIndex += direction;
+            if (fullscreenSlideIndex >= slideData.length) fullscreenSlideIndex = 0;
+            else if (fullscreenSlideIndex < 0) fullscreenSlideIndex = slideData.length - 1;
+            const data = slideData[fullscreenSlideIndex];
+            document.getElementById('fullscreenImg').src = data.src;
+            document.getElementById('fullscreenImg').alt = data.alt;
+            document.getElementById('fullscreenTitle').textContent = data.title;
+            document.getElementById('fullscreenDescription').textContent = data.description;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSlideshow();
+            setInterval(() => {
+                if (!document.getElementById('fullscreenModal').classList.contains('active')) {
+                    changeSlide(1);
+                }
+            }, 8000);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('fullscreenModal').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') fullscreenChangeSlide(-1);
+                else if (e.key === 'ArrowRight') fullscreenChangeSlide(1);
+                else if (e.key === 'Escape') closeFullscreen();
+            } else {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                else if (e.key === 'ArrowRight') changeSlide(1);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUNIN-1</title>
+    <link rel="stylesheet" href="css/shared-styles.css">
+    <style>
+        .project-hero {
+            background: rgba(20, 20, 40, 0.8);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .project-hero p {
+            font-size: 1.3rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-logo img {
+            width: 260px;
+            height: 260px;
+            filter: drop-shadow(0 0 18px rgba(134, 239, 172, 0.35));
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-card {
+            background: rgba(74, 74, 147, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(134, 239, 172, 0.2);
+        }
+
+        .content-card h3 {
+            color: #86efac;
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: rgba(74, 74, 147, 0.4);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #86efac;
+            position: relative;
+        }
+
+        .timeline-date {
+            color: #86efac;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .slideshow-container {
+            background: rgba(25, 25, 50, 0.6);
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 30, 60, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide.active { display: block; }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            display: block;
+        }
+
+        .slide-content { padding: 1.5rem 2rem 2rem; }
+
+        .slide-nav, .fullscreen-nav, .fullscreen-close {
+            position: absolute;
+            z-index: 5;
+            border: none;
+            color: white;
+            background: rgba(15, 15, 35, 0.75);
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .slide-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+        .slide-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+
+        .slide-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0 0 1.2rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer;
+        }
+
+        .indicator.active { background: #86efac; }
+
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .fullscreen-modal.active { display: block; }
+
+        .fullscreen-content {
+            position: absolute;
+            inset: 50% auto auto 50%;
+            transform: translate(-50%, -50%);
+            width: min(90vw, 1000px);
+            background: rgba(20, 20, 40, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .fullscreen-content img {
+            display: block;
+            width: 100%;
+            max-height: 70vh;
+            object-fit: cover;
+        }
+
+        .fullscreen-info { padding: 1.5rem 2rem 2rem; }
+
+        .fullscreen-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+        .fullscreen-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+        .fullscreen-close { right: 1.5rem; top: 1.5rem; }
+
+        @media (max-width: 768px) {
+            .project-hero h1 { font-size: 2rem; }
+            .hero-logo img { width: 200px; height: 200px; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <section class="project-hero">
+                <h1>MUNIN-1</h1>
+                <div class="hero-logo">
+                    <img src="Images/Munin1/MuninPatchVariant1.png" alt="MUNIN-1 Logo">
+                </div>
+                <h2>STUDENT ONBOARDING AND SYSTEMS ENGINEERING PROGRAM</h2>
+                <p>MUNIN-1 is our foundational onboarding project, created to introduce new members to space systems engineering, teamwork, and hands-on technical development. The current cohort is developing a weather-balloon payload scheduled to launch Feb–Mar 2026 from Andøya Space — the project is open to all and requires no prior experience.</p>
+            </section>
+
+            <section class="slideshow-container">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 2rem; color: #ffffff; text-shadow: 0 0 15px rgba(100, 181, 246, 0.3);">Project Gallery</h2>
+                    <div class="slideshow-wrapper" id="slideshowWrapper">
+                        <button class="slide-nav slide-prev" onclick="changeSlide(-1)">‹</button>
+                        <button class="slide-nav slide-next" onclick="changeSlide(1)">›</button>
+                        <div class="slide-indicators" id="slideIndicators"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Join MUNIN-1</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>Join our community</h3>
+                            <p>Join us on Discord to stay updated and participate in discussions.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Sign up</h3>
+                            <p>Fill the sign-up form to register interest for the next build cycle and launch activities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="fullscreen-modal" id="fullscreenModal" onclick="closeFullscreen()">
+                <button class="fullscreen-close" onclick="closeFullscreen()">×</button>
+                <button class="fullscreen-nav fullscreen-prev" onclick="fullscreenChangeSlide(-1); event.stopPropagation();">‹</button>
+                <button class="fullscreen-nav fullscreen-next" onclick="fullscreenChangeSlide(1); event.stopPropagation();">›</button>
+                <div class="fullscreen-content" onclick="event.stopPropagation()">
+                    <div id="fullscreenMediaContainer"></div>
+                    <div class="fullscreen-info">
+                        <h3 id="fullscreenTitle"></h3>
+                        <p id="fullscreenDescription"></p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Overview</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>Goal</h3>
+                            <p>Build the technical foundation for new members through a structured and collaborative learning experience.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Core focus</h3>
+                            <p>Members learn the fundamentals of engineering design, project workflows, documentation, and systems-thinking.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Learning model</h3>
+                            <p>The project supports a practical, team-driven method of teaching, where students gain experience by contributing to real engineering work.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Mission Objectives</h2>
+                    <div class="stats-grid">
+                        <div class="content-card">
+                            <h3>Skills</h3>
+                            <p>Introduce students to essential engineering skills, including design, testing, and iteration.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Teamwork</h3>
+                            <p>Build interdisciplinary collaboration between students from different technical backgrounds and interests.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Leadership</h3>
+                            <p>Prepare members for future project roles and more advanced technical responsibilities within Polarix.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Teams</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3>Mechanical</h3>
+                            <p>CAD modelling, 3D printing and assembly of payload structures.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Electrical</h3>
+                            <p>PCB design, manufacturing and soldering for onboard electronics.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Software</h3>
+                            <p>Microcontroller programming, sensor integration and data handling.</p>
+                        </div>
+                        <div class="content-card">
+                            <h3>Systems</h3>
+                            <p>System design, simulation, mission planning, documentation and requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="container">
+                    <h2>Project Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Early onboarding</div>
+                            <h3>Recruitment</h3>
+                            <p>New members are introduced to the organization and the structure of project work.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Technical foundation</div>
+                            <h3>Skill development</h3>
+                            <p>Students focus on learning core principles, working in teams, and building early technical competency.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb–Mar 2026</div>
+                            <h3>Weather balloon launch</h3>
+                            <p>Launch of the MUNIN-1 weather-balloon payload from Andøya Space; practical mission for teams to validate designs and collect data.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Ongoing</div>
+                            <h3>Project transition</h3>
+                            <p>Successful participants move into more specialized roles in later Polarix initiatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/shared-components.js"></script>
+    <script>
+        initializeSharedComponents('project');
+
+        let currentSlideIndex = 0;
+        let fullscreenSlideIndex = 0;
+        let slides, indicators;
+
+        const slideData = [
+            {
+                type: 'image',
+                src: 'Images/Munin1/9386ED00-09C2-413C-8765-F61E9B1F6FAC.jpg',
+                alt: 'MUNIN-1 project image 1',
+                title: 'MUNIN-1 onboarding',
+                description: 'Students collaborating and learning during the MUNIN-1 project.'
+            },
+            {
+                type: 'image',
+                src: 'Images/Munin1/675443793_17884200249520967_4247608516575185933_n..webp',
+                alt: 'MUNIN-1 project image 2',
+                title: 'Teamwork',
+                description: 'Hands-on collaboration and technical engagement within the group.'
+            },
+            {
+                type: 'image',
+                src: 'Images/Munin1/681523521_17884200240520967_8402294208376645476_n..webp',
+                alt: 'MUNIN-1 project image 3',
+                title: 'Learning in practice',
+                description: 'Members building skills through real project work and shared experience.'
+            },
+            {
+                type: 'video',
+                src: 'Images/Munin1/AQMNVBt08XVHSRaD8WlL8XQF9AOslUz9XU8iXNINxMAF82VX51TvfhfcSkusjHc9v9sa_CLebptv6THM6hAQK1VzP5G7-tuM.mp4',
+                alt: 'MUNIN-1 video 1',
+                title: 'Project video 1',
+                description: 'A short video from the MUNIN-1 project experience.'
+            },
+            {
+                type: 'video',
+                src: 'Images/Munin1/AQPk3_nqqSTlvIvn07F5goVYT32ZlXzmCyZJas6QGdVFhceJefDpQTQe1abIqAeXK1K8r1YVeKAF7Yhq7P2D_rbX9koxv5F8.mp4',
+                alt: 'MUNIN-1 video 2',
+                title: 'Project video 2',
+                description: 'A second project video showing the momentum and atmosphere of the team.'
+            }
+        ];
+
+        function renderMedia(slide) {
+            if (slide.type === 'video') {
+                return `
+                    <video src="${slide.src}" controls autoplay muted loop playsinline></video>
+                `;
+            }
+
+            return `
+                <img src="${slide.src}" alt="${slide.alt}">
+            `;
+        }
+
+        function initializeSlideshow() {
+            const wrapper = document.getElementById('slideshowWrapper');
+            const indicatorsContainer = document.getElementById('slideIndicators');
+            wrapper.querySelectorAll('.slide').forEach(slide => slide.remove());
+            indicatorsContainer.innerHTML = '';
+
+            slideData.forEach((slide, index) => {
+                const slideElement = document.createElement('div');
+                slideElement.className = index === 0 ? 'slide active' : 'slide';
+                slideElement.innerHTML = `
+                    <div class="expand-hint">Click to expand</div>
+                    ${renderMedia(slide)}
+                    <div class="slide-content">
+                        <h3>${slide.title}</h3>
+                        <p>${slide.description}</p>
+                    </div>
+                `;
+
+                const firstNav = wrapper.querySelector('.slide-nav');
+                wrapper.insertBefore(slideElement, firstNav);
+
+                const indicator = document.createElement('span');
+                indicator.className = index === 0 ? 'indicator active' : 'indicator';
+                indicator.onclick = () => currentSlide(index + 1);
+                indicatorsContainer.appendChild(indicator);
+            });
+
+            slides = document.querySelectorAll('.slide');
+            indicators = document.querySelectorAll('.indicator');
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
+            else if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function openFullscreen(slideIndex) {
+            fullscreenSlideIndex = slideIndex;
+            const data = slideData[fullscreenSlideIndex];
+            const mediaContainer = document.getElementById('fullscreenMediaContainer');
+            mediaContainer.innerHTML = renderMedia(data);
+            document.getElementById('fullscreenTitle').textContent = data.title;
+            document.getElementById('fullscreenDescription').textContent = data.description;
+            document.getElementById('fullscreenModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function fullscreenChangeSlide(direction) {
+            fullscreenSlideIndex += direction;
+            if (fullscreenSlideIndex >= slideData.length) fullscreenSlideIndex = 0;
+            else if (fullscreenSlideIndex < 0) fullscreenSlideIndex = slideData.length - 1;
+            const data = slideData[fullscreenSlideIndex];
+            const mediaContainer = document.getElementById('fullscreenMediaContainer');
+            mediaContainer.innerHTML = renderMedia(data);
+            document.getElementById('fullscreenTitle').textContent = data.title;
+            document.getElementById('fullscreenDescription').textContent = data.description;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSlideshow();
+            setInterval(() => {
+                if (!document.getElementById('fullscreenModal').classList.contains('active')) {
+                    changeSlide(1);
+                }
+            }, 8000);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('fullscreenModal').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') fullscreenChangeSlide(-1);
+                else if (e.key === 'ArrowRight') fullscreenChangeSlide(1);
+                else if (e.key === 'Escape') closeFullscreen();
+            } else {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                else if (e.key === 'ArrowRight') changeSlide(1);
+            }
+        });
+    </script>
+</body>
+</html>
