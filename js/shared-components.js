@@ -48,7 +48,9 @@ const headerHTML = `
 <header>
   <nav class="container">
     <div class="logo">
-      <img src="Images/Logo 3.svg" alt="Polarix UIT" />
+      <a href="index.html" aria-label="Go to homepage">
+        <img src="Images/Logo 3.svg" alt="Polarix UIT" />
+      </a>
     </div>
 
     <!-- Desktop nav -->

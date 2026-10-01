@@ -140,6 +140,8 @@
         .slide-content {
             padding: 1.5rem 2rem 2rem;
         }
+        .slide-content p { display: none; }
+        .slide-content h3 { display: none; }
 
         .slide-nav, .fullscreen-nav, .fullscreen-close {
             position: absolute;
@@ -213,6 +215,8 @@
         .fullscreen-info {
             padding: 1.5rem 2rem 2rem;
         }
+        .fullscreen-info p { display: none; }
+        .fullscreen-info h3 { display: none; }
 
         .fullscreen-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
         .fullscreen-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
@@ -234,7 +238,7 @@
                     <img src="Images/Polarix_uit_circle_blue_logo.png" alt="Polarix UiT Logo">
                 </div>
                 <h2>ROVER PLATFORM FOR LUNAR ASSISTED EXPLORATION</h2>
-                <p>Hugin is Polarix UiT’s rover-focused project, designed to explore terrain navigation, autonomy, and mission systems in a competitive space robotics context.</p>
+                <p>Hugin is Polarix UiT’s rover-focused project for the LOOK Competition, designed to explore terrain navigation, autonomy, and mission systems in space. We are currently in the second part of the competition(LOOK27).</p>
             </section>
 
             <section class="slideshow-container">
@@ -305,20 +309,40 @@
                 <div class="container">
                     <h2>Project Timeline</h2>
                     <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2024</div>
-                            <h3>Concept development</h3>
-                            <p>Requirements and early rover concepts were established around a realistic field-mission scenario.</p>
+                        <div class="timeline-group">
+                            <h3 class="timeline-group-title">LOOK 26</h3>
+                            <div class="timeline-item">
+                                <div class="timeline-date">Fall 2025</div>
+                                <h3>Concept development</h3>
+                                <p>Requirements and early rover concepts were established around a realistic field-mission scenario.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">Winter 2025</div>
+                                <h3>Prototype iteration</h3>
+                                <p>System design matured through prototype construction and testing in iterative development cycles.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">Spring 2026</div>
+                                <h3>Field testing & LOOK 2026 competition date</h3>
+                                <p>Integration, field testing and competition preparation for the LOOK 2026 event to validate performance and readiness.</p>
+                            </div>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2025</div>
-                            <h3>Prototype iteration</h3>
-                            <p>System design matured through prototype construction and testing in iterative development cycles.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2027</div>
-                            <h3>Competition focus</h3>
-                            <p>Hugin is preparing for the LOOK competition and long-term goals aligned with ERC-style mission development.</p>
+
+                        <div class="timeline-group">
+                            <h3 class="timeline-group-title">LOOK 27</h3>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-date">Fall 2026</div>
+                                <h3>Future development & LOOK 2027 competition date</h3>
+                                <p>Planning, integration and competition preparation for the LOOK 2027 event to support the next development phase.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2027</div>
+                                <h3>Competition focus</h3>
+                                <p>Finalizing the project and getting ready for the competition</p>
+                            </div>
+                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -336,71 +360,40 @@
 
         const slideData = [
             {
-                src: 'Images/Hugin/20260604_170134.jpg',
-                alt: 'Hugin project image 1',
-                title: 'Hugin rover build',
-                description: 'Hugin project imagery from the rover development and testing work.'
-            },
-            {
-                src: 'Images/Hugin/20260604_203818.jpg',
-                alt: 'Hugin project image 2',
-                title: 'Rover assembly',
-                description: 'Progress on the rover platform during the build and integration phase.'
-            },
-            {
-                src: 'Images/Hugin/20260606_103435.jpg',
-                alt: 'Hugin project image 3',
-                title: 'System checks',
-                description: 'Field testing and structural checks carried out throughout development.'
-            },
-            {
-                src: 'Images/Hugin/20260606_130230.jpg',
-                alt: 'Hugin project image 4',
-                title: 'Testing setup',
-                description: 'Hugin testing and validation work in a realistic rover mission environment.'
-            },
-            {
-                src: 'Images/Hugin/2a910b37-9b9c-4397-a48f-6ca881243808.jpg',
-                alt: 'Hugin project image 5',
-                title: 'Design iteration',
-                description: 'Iterative engineering work helping refine the rover design and performance.'
-            },
-            {
-                src: 'Images/Hugin/image.jpg',
-                alt: 'Hugin project image 6',
-                title: 'Mission development',
-                description: 'The rover platform evolves through repeated mission-oriented testing and design review.'
-            },
-            {
-                src: 'Images/Hugin/image2.jpg',
-                alt: 'Hugin project image 7',
-                title: 'Operational context',
-                description: 'Project imagery showing the rover in the context of mission scenarios and testing.'
-            },
-            {
-                src: 'Images/Hugin/IMG_2702.jpg',
-                alt: 'Hugin project image 8',
-                title: 'Final build look',
-                description: 'A snapshot of the completed rover platform in its current configuration.'
-            }
-            ,
-            {
                 src: 'Images/Hugin/hugin02.webp',
-                alt: 'Hugin project image 9',
-                title: 'Field test 1',
+                alt: 'Hugin field test',
+                title: 'Field test',
                 description: 'Field imagery from recent testing.'
             },
             {
                 src: 'Images/Hugin/hugin1.webp',
-                alt: 'Hugin project image 10',
+                alt: 'Hugin team',
                 title: 'Team photo',
                 description: 'Team working on the rover.'
             },
             {
                 src: 'Images/Hugin/img.webp',
-                alt: 'Hugin project image 11',
+                alt: 'Hugin workshop',
                 title: 'Workshop image',
                 description: 'Workshop and assembly shots.'
+            },
+            {
+                src: 'Images/Hugin/hugin at look.jpg',
+                alt: 'Hugin at LOOK event',
+                title: 'LOOK event',
+                description: 'Hugin presentation and demo at the LOOK competition.'
+            },
+            {
+                src: 'Images/Hugin/huginassembly.jpg',
+                alt: 'Hugin assembly',
+                title: 'Assembly',
+                description: 'Assembly and integration progress.'
+            },
+            {
+                src: 'Images/Hugin/hugintess.jpg',
+                alt: 'Hugin test session',
+                title: 'Test session',
+                description: 'Testing and validation on-site.'
             }
         ];
 

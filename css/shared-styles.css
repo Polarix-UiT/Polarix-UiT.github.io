@@ -84,6 +84,16 @@ nav ul li a:hover {
     text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
 }
 
+.logo a {
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
 /* Nav visibility: ensure only one nav (desktop or mobile) is visible */
 .desktop-nav {
   display: flex;
